@@ -18,6 +18,8 @@ from pylib.fields.text_field import TextField
 from pylib.row import Row
 from pylib.table import Table
 
+import sys
+
 SUBJECT_PREFIX = 'subject_'
 
 @dataclass
@@ -229,7 +231,7 @@ def extract_subject_data(raw_row, row):
     for val1 in annos.values():
         for key2, val2 in val1.items():
             if key2 != "retired":
-				key2 = re.sub(r'\W+', '_', key2) # Replace non-word chars with _
+                key2 = re.sub(r'\W+', '_', key2) # Replace non-word chars with _
                 key2 = re.sub(r'^_+|_$', '', key2) # Remove leading/trailing _
                 row.add_field(SUBJECT_PREFIX + key2, SameField(value=val2))
 

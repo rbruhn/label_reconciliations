@@ -58,7 +58,7 @@ def get_groups(args, unreconciled, reconciled):
     df = df[keys + [c for c in df.columns if c not in keys]]
     df = df.sort_values(keys)
     df = df.drop(["__order__"], axis="columns")
-    df = df.applymap(create_link)
+    df = df.map(create_link)
 
     groups = {}
     for subject_id, rows in df.groupby(args.group_by):
